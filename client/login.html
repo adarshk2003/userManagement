@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="./adduser.html">ADD USER</a>
+        <a href="./getallusers.html">GET ALL USERS</a>
+     </nav>
+    <div class="main-container">
+        <div class="form-container1">
+            <form onsubmit="login(event)" method="POST">
+                <div class="userformdiv"><span class="userform">Login</span></div>
+                <div class="form-row"><input type="email" name="email" id="email" placeholder="Enter your email"> <span
+                        class="clienterr" id="email-err"></span>
+                </div>
+                <div class="form-row"><input type="password" name="password" id="pass"
+                        placeholder="Enter your password"> <span class="clienterr" id="pass-err"></span>
+                </div>
+                <button class="submit" type="submit">Login</button></span>
+            </form>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
