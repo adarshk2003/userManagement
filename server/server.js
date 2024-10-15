@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const mongoConnect = require('./db/connect');
 const userRouters = require('./routes/userRouts');
+const authRouts = require('./routes/authRout');
 
 
 app.get('/test', (req, res) => {
@@ -31,6 +32,7 @@ app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ extended: true }));
 //userRoutes
 app.use(userRouters);
+app.use(authRouts);
 
 app.listen(process.env.PORT, () => {
     console.log(`server running at http://localhost:${process.env.PORT}`)

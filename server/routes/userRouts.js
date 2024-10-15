@@ -1,10 +1,9 @@
-const express=require('express');
-const router=express.Router();
-const userController=require('../controller.js/userController');
+const express = require('express');
+const router = express.Router();
+const userController = require('../controllers/userController');
 const { set } = require('mongoose');
-const accessControl=require('../utils/access-controll').accessControl;
-
-
+// const checkLogin = require("../utils/checkLogin").checkLogin;
+const accessControl = require("../utils/access-controll").accessControl;
 
 
 function setaccessControl(access_types){
@@ -13,10 +12,14 @@ function setaccessControl(access_types){
     }
 }
 
-router.post('/users',setaccessControl("2"),userController.crearUser);
-router.get('/users',setaccessControl("1"),userController.getAllUser);
-router.get('/user/:id',setaccessControl("1,2"),userController.getSingleUSer);
+
+router.post('/users',setaccessControl("1,2"),userController.createUser);
+router.get('/users',setaccessControl("1,2"),userController.getAllUsers);
+router.get('/users/:id',setaccessControl("1,2"), userController.getSingleUser);
+router.put('/users',setaccessControl("1,2"),userController.updateUser);
+router.delete('/users/:id',setaccessControl("1,2"),userController.deleteUser);
+router.put('/user',setaccessControl("1,2"),userController.resetPassword);
 
 
 
-module.exports=router;
+module.exports = router;

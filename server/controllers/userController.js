@@ -1,10 +1,8 @@
 const users = require('../db/models/users');
 const {success_function , error_function } = require('../utils/response-handler');
 const bcrypt = require('bcrypt');
-const fileUpload = require('../utils/file-upload').fileUpload;
+const fileUpload = require('../utils/fileUpload').fileUpload;
 const user_types = require ("../db/models/user_types");
-const set_password_template = require("../utils/email-templates/set-password").resetPassword;
-const sendEmail = require("../utils/send-email").sendEmail;
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 
@@ -93,8 +91,8 @@ exports.createUser = async function (req, res) {
           var randomPassword = generateRandomPassword(12);
           //console.log(randomPassword);
 
-        let content = await set_password_template (name,emails,randomPassword);
-        await sendEmail(emails,"updated password",content)
+        // let content = await set_password_template (name,emails,randomPassword);
+        // await sendEmail(emails,"updated password",content)
           
         
           body.password = randomPassword;

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const user_type = require('./user_type');
+const user_type = require('./user_types');
 
 const users = new mongoose.Schema({
     name: {
@@ -27,3 +27,5 @@ const users = new mongoose.Schema({
         ref:"user_types"
     }
 })
+
+module.exports = mongoose.model("users", users);
