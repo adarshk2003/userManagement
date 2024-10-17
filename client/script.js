@@ -113,7 +113,7 @@ async function getallusers() {
     const authToken = localStorage.getItem("authToken");
     console.log("authtoken :",authToken);
 
-    let response = await fetch ("http://localhost:3001/users",  {
+    let response = await fetch ("http://localhost:4000/users",  {
         method: "GET",
         headers : {
             "Authorization" : `bearer ${authToken}`,
@@ -139,7 +139,7 @@ async function getallusers() {
                 <tr>
                 <td>${datas[i].name}</td>
                 <td>${datas[i].email}</td>
-                <td>${datas[i].password}</td>
+                <td>${datas[i].image}</td>
                 <td><button class="btn" onclick="sendid('${datas[i]._id}')">view</button>
                 <tr>`
     
@@ -159,7 +159,7 @@ async function getallusers() {
 function sendid(id) {
     console.log("button clicked..")
     console.log("id:", id);
-    window.location.href = `getsingleuser.html?id=${id}`
+    window.location.href = `singlrUser.html?id=${id}`
 }
 
 
@@ -179,7 +179,7 @@ async function loaddata() {
 
     const authToken = localStorage.getItem("authToken");
 
-    let response = await fetch(`http://localhost:3001/users/${id}`, {
+    let response = await fetch(`http://localhost:4000/users/${id}`, {
         method: "GET",
         headers: {
             'Authorization' : `bearer ${authToken}`,
@@ -229,7 +229,7 @@ async function edituser() {
     let id = queryparams.get("id");
     console.log("id :", id);
 
-    let response = await fetch(`http://localhost:3001/${id}`, {
+    let response = await fetch(`http://localhost:4000/${id}`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json'
@@ -269,7 +269,7 @@ async function edituser() {
 
     const authToken = localStorage.getItem("authToken");
 
-    let response = await fetch(`http://localhost:3001/users/${id}`, {
+    let response = await fetch(`http://localhost:4000/users/${id}`, {
         method: "GET",
         headers: {
             'Authorization' : `bearer ${authToken}`,
@@ -360,15 +360,6 @@ async function updateuser(event) {
         return;
     }
 
-    // if (!pass) {
-    //     passerr.innerHTML = 'password required!'
-    //     return;
-    // }
-    // else if (!passreg.test(pass)) {
-    //     passerr.innerHTML = "password must contain 6 characters!"
-    //     return;
-    // }
-
 
 
 
@@ -385,7 +376,7 @@ async function updateuser(event) {
 
     const authToken = localStorage.getItem("authToken");
 
-    let response = await fetch("http://localhost:3001/users", {
+    let response = await fetch("http://localhost:4000/users", {
         method: "PUT",
         headers: {
             'Authorization' : `bearer ${authToken}`,
@@ -415,7 +406,7 @@ async function deletedata(id) {
     console.log("id:", id);
 
     let authToken = localStorage.getItem("authToken")
-    let response = await fetch(`http://localhost:3001/users/${id}`, {
+    let response = await fetch(`http://localhost:4000/users/${id}`, {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json',
@@ -458,7 +449,7 @@ async function login(event) {
     console.log("datas from login :",datas);
     let json_data = JSON.stringify(datas);
 
-    let response = await fetch ("http://localhost:3001/login",{
+    let response = await fetch ("http://localhost:4000/login",{
         method : 'POST',
         headers :{
             "Content-Type" : "application/json", 
@@ -474,7 +465,7 @@ async function login(event) {
         let data = parsed_response.data;
         console.log("data :",data);
         console.log("type of data:",typeof(data));
-        alert(parsed_response.message)
+        alert(parsed_response.message);
 
         // saving token into browsers local storage
         localStorage.setItem('authToken',parsed_response.data.token);
@@ -484,18 +475,18 @@ async function login(event) {
         let user_type = data.user_type;
         console.log("user_type :",user_type);
         let is_password_reset = data.is_password_reset;
-        if(user_type === "66f420a7384f7819814abf1a"){
+        if(user_type === "670decb86e0d8b14334c537e"){
             if(is_password_reset === false){
                 alert("Reset password to continue");
-                window.location.href = "ResetPassword.html"
+                window.location.href = "resetpass.html"
             }
             else{
-                window.location.href = `usershomepage.html?id=${id}`
+                window.location.href = `homepage.html?id=${id}`
             }
 
         }
         else{
-            window.location.href = "getallusers.html"
+            window.location.href = "viewUser.html"
         }
 
     }
@@ -519,53 +510,4 @@ function logout() {
     } else {
         alert("Token not available");
     }
-}
-
-
-async function resetpass(event){
-    event.preventDefault();
-
-    let passresetdata = document.getElementById("passresetdata")
-
-    let formdata = new FormData(passresetdata);
-
-    console.log("formdata from passreset :",formdata);
-
-    let current_password = formdata.get("current_password");
-    let new_password = formdata.get("new_password");
-    let data = {
-        current_password,
-        new_password
-    }
-    let json_data = JSON.stringify(data);
-    const authToken = localStorage.getItem("authToken")
-    let response = await fetch("http://localhost:3001/user",{
-        method : 'PUT',
-        headers :{
-            'Content-Type' : 'application/json',
-            'Authorization': `bearer ${authToken}`
-        },
-        body : json_data
-    })
-    if(response.ok){
-        console.log("response :",response);
-        let json_response = await response.json();
-        alert(json_response.message);
-        let id = json_response.data;
-        console.log("id :",id);
-        window.location.href = "usershomepage.html";
-    }
-    else{
-        let json_response = await response.json();
-        alert(json_response.message);
-    }
-
-    
-
-
-
-
-
-
-
 }

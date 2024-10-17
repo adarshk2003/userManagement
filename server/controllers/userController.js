@@ -2,7 +2,9 @@ const users = require('../db/models/users');
 const {success_function , error_function } = require('../utils/response-handler');
 const bcrypt = require('bcrypt');
 const fileUpload = require('../utils/fileUpload').fileUpload;
-const user_types = require ("../db/models/user_types");
+const user_types = require("../db/models/user_types");
+const set_password_template = require('../utils/email-templates/set-password').resetPassword;
+const sendEmail = require('../utils/send-email').sendEmail;
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 
@@ -27,7 +29,7 @@ exports.createUser = async function (req, res) {
         let image = req.body.image
 
        
-        body.user_type = "66f420a7384f7819814abf1a";
+        body.user_type = "670decb86e0d8b14334c537e";
         
 
         if(image){
