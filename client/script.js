@@ -9,9 +9,6 @@ async function adduser(event) {
     let email = document.getElementById("email").value;
     console.log("email:", email);
 
-    // let pass = document.getElementById("pass").value;
-    // console.log("password:", pass);
-
     let image = document.getElementById("dp").value;
     console.log("image :",image);
 
@@ -59,16 +56,6 @@ async function adduser(event) {
         emailerr.innerHTML = "invalid email!";
         return;
     }
-
-    // if (!pass) {
-    //     passerr.innerHTML = 'password required!'
-    //     return;
-    // }
-    // else if (!passreg.test(pass)) {
-    //     passerr.innerHTML = "password must contain 6 characters!"
-    //     return;
-    // }
-
     let datas = {
         name,
         email,
@@ -92,7 +79,7 @@ async function adduser(event) {
     });
     
     if(response.ok){
-        window.location.href = "getallusers.html";
+        window.location.href = "viewUser.html";
     }
 
     let parsed_response = await response.text();
