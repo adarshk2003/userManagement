@@ -2,13 +2,17 @@
   "development": {
     "database": {
       "url": "mongodb://localhost:27017/user_management",
-      "options": {}
+      "options": {
+        "useNewUrlParser": true
+      }
     }
   },
   "test": {
     "database": {
       "url": "mongodb://localhost:27017/user_management",
-      "options": {}
+      "options": {
+        "useNewUrlParser": true
+      }
     }
   },
   "production": {
@@ -19,7 +23,9 @@
       "name": "database_production",
       "host": "localhost",
       "port": "",
-      "options": {}
+      "options": {
+        "useNewUrlParser": true
+      }
     }
   }
 }

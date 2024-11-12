@@ -119,18 +119,16 @@ async function getallusers() {
 
             let datas = await response.json();
             console.log("datassss", datas);
-            let tbody = document.getElementById('tbody');
+            let tbody = document.getElementById('card-container');
             let content = '';
             for (i = 0; i < datas.length; i++) {
                 content = content + `
-                <tr>
-                <td>${datas[i].name}</td>
-                <td>${datas[i].email}</td>
-                <td>${datas[i].image}</td>
-                <td><button class="btn" onclick="sendid('${datas[i]._id}')">view</button>
-                <tr>`
-    
-    
+            <div class="card">
+                <img src="${datas[i].image}" alt="Profile Picture">
+                <h3>${datas[i].name}</h3>
+                <p>${datas[i].email}</p>
+                <button class="btn" onclick="sendid('${datas[i]._id}')">View</button>
+            </div>`
             }
             tbody.innerHTML = content;
         }
@@ -187,8 +185,8 @@ async function loaddata() {
  <div class="line"></div>
  <div class="text-div"><h4>${json_response.name}</h4></div>
  <div class="text-div"><h4>${json_response.email}</h4></div>
- <div class="btn-div"><span><button class="btn1" onclick = 'senduserdata("${json_response._id}")'><ion-icon name="create-outline"></ion-icon></button></span>
- <span><button  class="btn1" onclick ='deletedata("${json_response._id}")'><ion-icon name="trash-outline"></ion-icon></button></span></div>`
+ <div class="btn-div"><span><button class="btn1" onclick = 'senduserdata("${json_response._id}")'></button></span>
+ <span><button  class="btn1" onclick ='deletedata("${json_response._id}")'></button></span></div>`
 
     viewuser.innerHTML = content;
 

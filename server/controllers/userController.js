@@ -29,7 +29,7 @@ exports.createUser = async function (req, res) {
         let image = req.body.image
 
        
-        body.user_type = "670decb86e0d8b14334c537e";
+        body.user_type = "67318f01d80b14186bcaaec9";
         
 
         if(image){
@@ -93,8 +93,8 @@ exports.createUser = async function (req, res) {
           var randomPassword = generateRandomPassword(12);
           //console.log(randomPassword);
 
-        // let content = await set_password_template (name,emails,randomPassword);
-        // await sendEmail(emails,"updated password",content)
+        let content = await set_password_template (name,emails,randomPassword);
+        await sendEmail(emails,"updated password",content)
           
         
           body.password = randomPassword;

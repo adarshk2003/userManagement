@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title></title>
+    <title>View All Users</title>
 </head>
+
 <body onload="getallusers()">
     <nav>
-        <div class="userm"><h1>userM</h1></div>
-        <div class="linkM"><a href="./addUser.html">ADD USER</a>
-        <a href="./viewUser.html">GET ALL USERS</a></div>
-        
-     </nav>
-    <div class="table-container">
- <table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>profile</th>
-        </tr>
-    </thead>
-    <tbody id="tbody">
+        <div class="userm">
+            <h1>view users</h1>
+        </div>
+        <div class="linkM">
+            <a href="./addUser.html">Add User</a>
+            <a href="./viewUser.html">View All Users</a>
+            <a href="./"></a>
+        </div>
+    </nav>
 
-    </tbody>
- </table>
-</div>
-    
+    <div class="card-container" id="card-container">
+        <!-- User cards will be populated here dynamically -->
+    </div>
 
     <script src="./script.js"></script>
 </body>
+
 </html>
